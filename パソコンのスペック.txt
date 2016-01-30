@@ -2,3 +2,5 @@ OS：windows
 CPU：Intel(R)Core(TM)i5CPU
 ﾒﾓﾘｰ：4GB
 ハードディスク:500GB
+
+1111111111111111111111111
