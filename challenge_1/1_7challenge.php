@@ -19,9 +19,9 @@ print'<br/>';
 $x=$yen/$total;
 print"$x".'<br/>';
 
-if($yen>=3000){print'4%';}
+if(($yen>=3000) && ($yen<5000)){print'4%';}
 if($yen>=5000){print'5%';}
-
+ 
 ?>
 
 
