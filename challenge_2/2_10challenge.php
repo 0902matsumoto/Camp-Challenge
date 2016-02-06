@@ -16,7 +16,6 @@ while($x%2==0)
 $x=$x/2;
 print 2;
 print "<br/>";
-$i=$x%2;
 }
 
 while($x%3==0)
@@ -24,7 +23,6 @@ while($x%3==0)
 $x=$x/3;
 print 3;
 print "<br/>";
-$i=$x%3;
 }
 
 while($x%5==0)
@@ -32,7 +30,6 @@ while($x%5==0)
 $x=$x/5;
 print 5;
 print "<br/>";
-$i=$x%5;
 }
 
 while($x%7==0)
@@ -40,7 +37,6 @@ while($x%7==0)
 $x=$x/7;
 print 7;
 print "<br/>";
-$i=$x%7;
 }
 
 if($x!=1)print'その他';
