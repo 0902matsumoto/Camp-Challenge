@@ -8,7 +8,9 @@
 
 <?php
 
-$x=$_GET['x'];
+$x=isset($_GET['x'])?$_GET['x']:"";
+
+if($x!=""){
 
 print"$x".'<br/>';
 while($x%2==0)
@@ -45,7 +47,7 @@ if($x!=1)print'その他';
 
 
 
-
+}
 
 
 
