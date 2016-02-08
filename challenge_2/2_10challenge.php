@@ -41,7 +41,7 @@ print 7;
 print "<br/>";
 }
 
-if($x!=1)print'その他';
+if($x>1)print'その他';
 
 
 
