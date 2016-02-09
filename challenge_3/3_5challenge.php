@@ -2,7 +2,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>PHP基礎</title>
+<title>PHP基礎
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</title>
 </head>
 <boby>
 
@@ -11,6 +30,7 @@
 //住所を返却し、受け取った後はid以外の値を表示する
 
 list($id,$name,$birth,$address)=number();
+
 
 print $name."<br>".$birth."<br>".$address;
 
