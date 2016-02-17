@@ -10,19 +10,17 @@
 //課題2:引数として数値を受け取り、その値が奇数か偶数か判別＆表示する処理
 //を関数として制作し、適当な数値に対して奇数・偶数の判別を行ってください
 
-$number=20;
+$result=dis(1);
+ print"$result";
 
-dis($number);
-
-function dis($num)
-{
-if($num%2==0){
-$num="偶数";
-}else{
-$num="奇数";
-}
-$output="$num".'です。';
-print"$output";
+function dis($num){
+   if($num%2==0){
+      //$numという引数（数字が入っている）ものへ、文字列を上書きするのはあまり良くない
+      $moji="偶数";
+  }else{
+      $moji="奇数";
+       }
+    return $moji;
 }
 
 

@@ -18,9 +18,11 @@ print'<br/>';
 
 $x=$yen/$total;
 print"$x".'<br/>';
-
-if(($yen>=3000) && ($yen<5000)){print'4%';}
-if($yen>=5000){print'5%';}
+//ポイントの率を表示するのではなく、実際に何ポイント付与されるのかを表示
+$nebiki_4=$yen*0.04;
+$nebiki_5=$yen*0.05;
+if(($yen>=3000) && ($yen<5000)){print"$nebiki_4";}
+if($yen>=5000){print"$nebiki_5";}
  
 ?>
 

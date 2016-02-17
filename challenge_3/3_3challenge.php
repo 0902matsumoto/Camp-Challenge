@@ -15,18 +15,19 @@
 //例）function sample($□□□, $△△△, $type) // 引数が３つの関数書き出し部分(デフォルト値なし)
 
 function zzz($g1,$g2=5,$type=false){
-$g4=$g1*$g2;
-if($type===true){
-$g5=$g4*$g2;
-print"$g5";
-}else{
-print"$g4";
-}
-}
+  $g4=$g1*$g2;
+    if($type===true){
+      $g5=$g4*$g4;
+      print"$g5";
+        }else{
+      print"$g4";
+    }
+  }
 
 $a=100;
-$b=true;
 $d=6;
+$b=true;
+
 zzz($a,$d,$b);
 
 ?>
