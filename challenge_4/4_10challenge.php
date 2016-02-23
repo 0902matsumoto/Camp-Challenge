@@ -1,13 +1,12 @@
-<!DOCTYPE HTML PUBLIC"-//WSC//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>PHP基礎</title>
-</head>
-<boby>
-
-<?php
-//１０．紹介していないPHPの組み込み関数を利用して、処理を作成してください。
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <?php
+        //１０．紹介していないPHPの組み込み関数を利用して、処理を作成してください。
 //講義では紹介されていないPHPの組み込み関数はたくさん存在します。
 //PHPの公式サイトから関数を選び、実際にロジックを作成してみてください。
 //また、この処理を作成するに当たり、下記を必ず実装してください。
@@ -15,6 +14,9 @@
 //②処理の開始、終了のタイミングで、ログファイルに開始・終了の書き込みを行う。
 //③書き込む内容は、「日時　状況（開始・終了）」の形式で書き込む。
 //④最後に、ログファイルを読み込み、その内容を表示してください。
+
+$startTime = date('Y-m-d H:i:s',time());
+$path = "log.txt";
 
 $number=mt_rand(1,1000);
 $num=mt_rand(1,10);
@@ -34,13 +36,18 @@ $b<br><br>
 小数点以下を切り上げ<br>
 $c<br>";
 
-$fp=fopen("log.txt","w");
+$endTime = date('Y-m-d H:i:s',time());
 
-fwrite($fp,'2/10/21:15開始-2/10/21:54終了');
+$start_end_Log = "$startTime 開始\n $endTime 終了\n";
+
+$fp = fopen($path, 'ab');
+// $fp が外部ファイルへの所在を表すリソース型かどうか調べる。
+if(! is_resource($fp)){
+    die('ファイルが開けませんでした。');
+}
+fwrite($fp, "$start_end_Log");
 
 fclose($fp);
-
-?>
-
-</body>
+        ?>
+    </body>
 </html>
