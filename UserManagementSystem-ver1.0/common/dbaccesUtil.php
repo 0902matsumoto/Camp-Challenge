@@ -4,6 +4,7 @@
 function connect2MySQL(){
     try{
         $pdo = new PDO('mysql:host=localhost;dbname=Challenge_db;charset=utf8','matsumoto','white0216');
+        $pdo->query("SET NAMES utf8");
         return $pdo;
     } catch (PDOException $e) {
         die('接続に失敗しました。次記のエラーにより処理を中断します:'.$e->getMessage());

@@ -81,17 +81,17 @@ $d_ay = !empty($_POST["d_ay"])?$_POST["d_ay"]:"";
     種別:
     <br>
     <?php if($t_ype=='エンジニア'){?>
-    <input type="radio" name="type" value="エンジニア" checked>エンジニア<br>
+    <input type="radio" name="type" value="1" checked>エンジニア<br>
     <?php }else{?>
-    <input type="radio" name="type" value="エンジニア">エンジニア<br>
+    <input type="radio" name="type" value="1">エンジニア<br>
     <?php } if($t_ype=='営業'){?>
-    <input type="radio" name="type" value="営業" checked>営業<br>
+    <input type="radio" name="type" value="2" checked>営業<br>
     <?php }else{?>
-    <input type="radio" name="type" value="営業">営業<br>
+    <input type="radio" name="type" value="2">営業<br>
     <?php } if($t_ype=='その他'){?>
-    <input type="radio" name="type" value="その他" checked>その他<br>
+    <input type="radio" name="type" value="3" checked>その他<br>
     <?php }else{?>
-    <input type="radio" name="type" value="その他">その他<br>
+    <input type="radio" name="type" value="3">その他<br>
     <?php }?>
     <br>
     

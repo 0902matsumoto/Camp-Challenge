@@ -1,5 +1,11 @@
 <?php require_once '../common/scriptUtil.php'; ?>
 <?php require_once '../common/dbaccesUtil.php'; ?>
+<?php 
+if(empty($_POST["pass"])){
+    access_error();
+    die;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -34,11 +40,14 @@
     $insert_query->bindValue(':tell',$tell);
     $insert_query->bindValue(':type',$type);
     $insert_query->bindValue(':comment',$comment);
-    $insert_query->bindValue(':newDate',time());
+    $insert_query->bindValue(':newDate',date('YmdHis',time()));
     
     //SQLを実行
-    $insert_query->execute();
-    
+    $flag = $insert_query->execute();
+    if(!$flag){
+        print "データの挿入に失敗しました:[$insert_sql]";
+        die;
+    }
     //接続オブジェクトを初期化することでDB接続を切断
     $insert_db=null;
     ?>

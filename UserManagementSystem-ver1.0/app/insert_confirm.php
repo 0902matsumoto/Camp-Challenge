@@ -40,6 +40,7 @@
         上記の内容で登録します。よろしいですか？
 
         <form action="<?php echo INSERT_RESULT ?>" method="POST">
+          <input type ="hidden" name = "pass" value = "pass">
           <input type="submit" name="yes" value="はい">
         </form>
         <form action="<?php echo INSERT ?>" method="POST">
