@@ -10,9 +10,10 @@
     <?php
     // 設問2:&& $_POST['year']!=="----" && $_POST['month']!=="--" && $_POST['day']!=="--"を挿入
     // && !empty($_POST['year'])を削除
-    if(!empty($_POST['name']) && !empty($_POST['type']) 
-            && !empty($_POST['tell']) && !empty($_POST['comment']) && $_POST['year']!=="----" 
-            && $_POST['month']!=="--" && $_POST['day']!=="--"){
+    if(!empty($_POST['name']) && !empty($_POST['type'])
+            && !empty($_POST['tell']) && !empty($_POST['comment']) && $_POST['year']!=="----"
+            && $_POST['month']!=="--" && $_POST['day']!=="--"
+            ){
         
         $post_name = $_POST['name'];
         //date型にするために1桁の月日を2桁にフォーマットしてから格納
@@ -44,7 +45,21 @@
           <!--insert_result.phpにて、直接リンクしてアクセスしてしまった際のエラー処理のためにpassを送信-->
           <input type="submit" name="yes" value="はい">
         </form>
-        <form action="<?php echo INSERT ?>" method="POST">
+        <form action="<?php echo INSERT ?>" method="POST"><?php // 初期値を表示するために送信
+           $n_ame = $_POST['name'];
+           $t_ype = $_POST['type'];
+           $t_ell = $_POST['tell'];
+           $c_omment = $_POST['comment'];
+           $y_ear = $_POST['year'];
+           $m_onth = $_POST['month'];
+           $d_ay = $_POST['day'];
+         ;?>  <input type ="hidden" name = "n_ame" value = "<?= $n_ame ?>">
+              <input type ="hidden" name = "t_ype" value = "<?= $t_ype ?>">
+              <input type ="hidden" name = "t_ell" value = "<?= $t_ell ?>">
+              <input type ="hidden" name = "c_omment" value = "<?= $c_omment ?>">
+              <input type ="hidden" name = "y_ear" value = "<?= $y_ear ?>">
+              <input type ="hidden" name = "m_onth" value = "<?= $m_onth ?>">
+              <input type ="hidden" name = "d_ay" value = "<?= $d_ay ?>">
             <input type="submit" name="no" value="登録画面に戻る">
         </form>
         

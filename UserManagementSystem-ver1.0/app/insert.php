@@ -24,7 +24,7 @@ $d_ay = !empty($_POST["d_ay"])?$_POST["d_ay"]:"";
     
     生年月日:　
     <select name="year">
-        <?php if(empty($y_ear)){ ?>
+        <?php if(empty($y_ear)||$y_ear=="----"){ ?>
         <option value="----">----</option>
         <?php
         for($i=1950; $i<=2010; $i++){ ?>
@@ -42,7 +42,7 @@ $d_ay = !empty($_POST["d_ay"])?$_POST["d_ay"]:"";
         <?php } ?>
     </select>年
     <select name="month">
-        <?php if(empty($m_onth)){ ?>
+        <?php if(empty($m_onth)||$m_onth=="--"){ ?>
         <option value="--">--</option>
         <?php
         for($i = 1; $i<=12; $i++){?>
@@ -60,7 +60,7 @@ $d_ay = !empty($_POST["d_ay"])?$_POST["d_ay"]:"";
         <?php } ?>
     </select>月
     <select name="day">
-        <?php if(empty($d_ay)){ ?>
+        <?php if(empty($d_ay)||$d_ay=="--"){ ?>
         <option value="--">--</option>
         <?php
         for($i = 1; $i<=31; $i++){ ?>
@@ -81,18 +81,18 @@ $d_ay = !empty($_POST["d_ay"])?$_POST["d_ay"]:"";
 
     種別:
     <br>
-    <?php if($t_ype=='エンジニア'){?> 
-    <input type="radio" name="type" value="0" checked>エンジニア<br><!--初期値としてエンジニアが選択されていた場合-->
-    <?php }else{?><!--データベースのtypeのデータ型がintなので、valueの値を0に変更-->
-    <input type="radio" name="type" value="0">エンジニア<br>
-    <?php } if($t_ype=='営業'){?>
-    <input type="radio" name="type" value="1" checked>営業<br><!--初期値として営業が選択されていた場合-->
+    <?php if($t_ype=='1'){?> 
+    <input type="radio" name="type" value="1" checked>エンジニア<br><!--初期値としてエンジニアが選択されていた場合-->
     <?php }else{?><!--データベースのtypeのデータ型がintなので、valueの値を1に変更-->
-    <input type="radio" name="type" value="1">営業<br>
-    <?php } if($t_ype=='その他'){?>
-    <input type="radio" name="type" value="2" checked>その他<br><!--初期値としてその他が選択されていた場合-->
+    <input type="radio" name="type" value="1">エンジニア<br>
+    <?php } if($t_ype=='2'){?>
+    <input type="radio" name="type" value="2" checked>営業<br><!--初期値として営業が選択されていた場合-->
     <?php }else{?><!--データベースのtypeのデータ型がintなので、valueの値を2に変更-->
-    <input type="radio" name="type" value="2">その他<br>
+    <input type="radio" name="type" value="2">営業<br>
+    <?php } if($t_ype=='3'){?>
+    <input type="radio" name="type" value="3" checked>その他<br><!--初期値としてその他が選択されていた場合-->
+    <?php }else{?><!--データベースのtypeのデータ型がintなので、valueの値を3に変更-->
+    <input type="radio" name="type" value="3">その他<br>
     <?php }?>
     <br>
     
