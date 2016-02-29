@@ -11,6 +11,7 @@ function connect2MySQL(){
     }
 }
 
+// DBアクセス系処理をこちらのファイルに移動。require_onceを用いて実行する。
 //db接続を確立
     $insert_db = connect2MySQL();
     
@@ -31,6 +32,7 @@ function connect2MySQL(){
     
     //SQLを実行
     $flag = $insert_query->execute();
+    // SQL文を実行を判定する処理。
     if(!$flag){
         print "データの挿入に失敗しました:[$insert_sql]";
         die;

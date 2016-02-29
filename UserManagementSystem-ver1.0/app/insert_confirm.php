@@ -41,6 +41,7 @@
 
         <form action="<?php echo INSERT_RESULT ?>" method="POST">
           <input type ="hidden" name = "pass" value = "pass">
+          <!--insert_result.phpにて、直接リンクしてアクセスしてしまった際のエラー処理のためにpassを送信-->
           <input type="submit" name="yes" value="はい">
         </form>
         <form action="<?php echo INSERT ?>" method="POST">
@@ -50,13 +51,12 @@
     <?php }else{ ?>
         <h1>入力項目が不完全です</h1><br>
          <form action="<?php echo INSERT ?>" method="POST">
-    <?php    // 設問 3 以下のif文を挿入
-             // 設問 4 hidden により、入力した値を
-          if(empty($_POST['name'])){print '名前が未入力です'."<br><br>";}else{
+    <?php    // 入力項目が不完全だった場合以下の処理を実行。
+          if(empty($_POST['name'])){print '名前が未入力です'."<br><br>";}else{ // 名前の入力がない場合、「名前が未入力です」と表示。
               $n_ame = $_POST['name'];
-              ?><input type ="hidden" name = "n_ame" value = "<?= $n_ame ?>"><?php
+              ?><input type ="hidden" name = "n_ame" value = "<?= $n_ame ?>"><?php // 名前が入力済みの場合、初期値表示のため、hiddenで送信
           }
-            if(empty($_POST['type'])){print '種別が未入力です'."<br><br>";}else{
+            if(empty($_POST['type'])){print '種別が未入力です'."<br><br>";}else{ // 以下、自己紹介文まで、上記処理と同じ処理を実行
                 $t_ype = $_POST['type'];
                 ?><input type ="hidden" name = "t_ype" value = "<?= $t_ype ?>"><?php
             }
@@ -68,20 +68,22 @@
                     $c_omment = $_POST['comment'];
                     ?><input type ="hidden" name = "c_omment" value = "<?= $c_omment ?>"><?php
                 }
-                  if(!empty($_POST['year'])||!empty($_POST['month'])||!empty($_POST['day'])){
+                // 年が----、月が--、日が--とどれかひとつでも代入されていた場合、「生年月日が未入力です」と表示。
+                // また、直接このページにログインした場合、エラー表示させないように、if文でyear、month、dayが空かどうか判定する。
+                  if(!empty($_POST['year'])||!empty($_POST['month'])||!empty($_POST['day'])){ 
                       if($_POST['year']=="----"||$_POST['month']=="--"||$_POST['day']=="--"){
                           print '生年月日が未入力です'."<br><br>";}}
                 if(!empty($_POST['year'])){
                     $y_ear = $_POST['year'];
-                    ?><input type ="hidden" name = "y_ear" value = "<?= $y_ear ?>"><?php
+                    ?><input type ="hidden" name = "y_ear" value = "<?= $y_ear ?>"><?php // 年が入力済みの場合、初期値表示のため、hiddenで送信
                   } 
              if(!empty($_POST['month'])){
                  $m_onth = $_POST['month'];
-                 ?><input type ="hidden" name = "m_onth" value = "<?= $m_onth ?>"><?php
+                 ?><input type ="hidden" name = "m_onth" value = "<?= $m_onth ?>"><?php //月が入力済みの場合、初期値表示のため、hiddenで送信
              } 
           if(!empty($_POST['day'])){
               $d_ay = $_POST['day'];
-              ?><input type ="hidden" name = "d_ay" value = "<?= $d_ay ?>"><?php
+              ?><input type ="hidden" name = "d_ay" value = "<?= $d_ay ?>"><?php // 日が入力済みの場合、初期値表示のため、hiddenで送信
          }        
     ?>
         <br><br>再度入力を行ってください

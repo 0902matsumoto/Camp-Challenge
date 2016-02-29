@@ -6,7 +6,7 @@ require_once '../common/defineUtil.php';
                        // トップページが定義された定数に変更
       return "<a href=".TOP_URI.">トップへ戻る</a>";
   }
-
+// insert_result.phpへの直リンク防止のための関数
   function access_error(){
        ?><h1>不正なアクセス</h1>
         不正なアクセスです。三秒後にログイン画面に移動します

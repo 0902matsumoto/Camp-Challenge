@@ -1,8 +1,8 @@
 <?php require_once '../common/scriptUtil.php'; 
 
-if(empty($_POST["pass"])){
-    access_error();
-    die;
+if(empty($_POST["pass"])){ // passが送信されているか判定
+    access_error(); // ユーザー定義関数
+    die; // ここで処理を終了する。
 }
 ?>
 
@@ -23,7 +23,7 @@ if(empty($_POST["pass"])){
     $tell = $_SESSION['tell'];
     $comment = $_SESSION['comment'];
 
-    require_once '../common/dbaccesUtil.php'; 
+    require_once '../common/dbaccesUtil.php'; // DBアクセス系処理を別のファイルからrequire_onceを用い、実行。
     ?>
 
     <h1>登録結果画面</h1><br>

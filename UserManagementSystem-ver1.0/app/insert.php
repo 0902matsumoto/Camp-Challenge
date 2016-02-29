@@ -1,6 +1,7 @@
 <?php require_once '../common/defineUtil.php'; ?>
-<?php
-$n_ame = !empty($_POST["n_ame"])?$_POST["n_ame"]:"";
+<!--$n_ameから以下7つの変数は初期値を代入するためのもの。初期値があるならば、それを代入。ないならば、空を代入。-->
+<?php 
+$n_ame = !empty($_POST["n_ame"])?$_POST["n_ame"]:""; 
 $t_ell = !empty($_POST["t_ell"])?$_POST["t_ell"]:"";
 $c_omment = !empty($_POST["c_omment"])?$_POST["c_omment"]:"";
 $t_ype = !empty($_POST["t_ype"])?$_POST["t_ype"]:"";
@@ -18,7 +19,7 @@ $d_ay = !empty($_POST["d_ay"])?$_POST["d_ay"]:"";
 <body>
     <form action="<?php echo INSERT_CONFIRM ?>" method="POST">
     名前:
-    <input type="text" name="name" value = "<?= $n_ame ?>">
+    <input type="text" name="name" value = "<?= $n_ame ?>"><!--名前に初期値が入力されていた場合、デフォルトとして、$n_ameを表示-->
     <br><br>
     
     生年月日:　
@@ -29,7 +30,7 @@ $d_ay = !empty($_POST["d_ay"])?$_POST["d_ay"]:"";
         for($i=1950; $i<=2010; $i++){ ?>
         <option value="<?php echo $i;?>"><?php echo $i ;?></option>
         <?php } ?>
-        <?php }else{ ?>
+        <?php }else{ ?><!--生年月日の年に初期値が入力されていた場合、下の処理を実行-->
         <option value="----">----</option>
          <?php for($i=1950; $i<$y_ear; $i++){ ?> 
         <option  value="<?php echo $i;?>"><?php echo $i ;?></option>
@@ -47,7 +48,7 @@ $d_ay = !empty($_POST["d_ay"])?$_POST["d_ay"]:"";
         for($i = 1; $i<=12; $i++){?>
         <option value="<?php echo $i;?>"><?php echo $i;?></option>
         <?php } ?>
-        <?php }else{ ?>
+        <?php }else{ ?><!--生年月日の月に初期値が入力されていた場合、下の処理を実行-->
         <option value="--">--</option><?php
           for($i=1; $i<$m_onth; $i++){ ?>
         <option  value="<?php echo $i;?>"><?php echo $i ;?></option>
@@ -65,7 +66,7 @@ $d_ay = !empty($_POST["d_ay"])?$_POST["d_ay"]:"";
         for($i = 1; $i<=31; $i++){ ?>
         <option value="<?php echo $i; ?>"><?php echo $i;?></option>
         <?php } ?>
-        <?php }else{ ?>
+        <?php }else{ ?><!--生年月日の日に初期値が入力されていた場合、下の処理を実行-->
         <option value="--">--</option><?php 
         for($i=1; $i<$d_ay; $i++){ ?>
         <option  value="<?php echo $i;?>"><?php echo $i ;?></option>
@@ -80,29 +81,29 @@ $d_ay = !empty($_POST["d_ay"])?$_POST["d_ay"]:"";
 
     種別:
     <br>
-    <?php if($t_ype=='エンジニア'){?>
-    <input type="radio" name="type" value="1" checked>エンジニア<br>
-    <?php }else{?>
-    <input type="radio" name="type" value="1">エンジニア<br>
+    <?php if($t_ype=='エンジニア'){?> 
+    <input type="radio" name="type" value="0" checked>エンジニア<br><!--初期値としてエンジニアが選択されていた場合-->
+    <?php }else{?><!--データベースのtypeのデータ型がintなので、valueの値を0に変更-->
+    <input type="radio" name="type" value="0">エンジニア<br>
     <?php } if($t_ype=='営業'){?>
-    <input type="radio" name="type" value="2" checked>営業<br>
-    <?php }else{?>
-    <input type="radio" name="type" value="2">営業<br>
+    <input type="radio" name="type" value="1" checked>営業<br><!--初期値として営業が選択されていた場合-->
+    <?php }else{?><!--データベースのtypeのデータ型がintなので、valueの値を1に変更-->
+    <input type="radio" name="type" value="1">営業<br>
     <?php } if($t_ype=='その他'){?>
-    <input type="radio" name="type" value="3" checked>その他<br>
-    <?php }else{?>
-    <input type="radio" name="type" value="3">その他<br>
+    <input type="radio" name="type" value="2" checked>その他<br><!--初期値としてその他が選択されていた場合-->
+    <?php }else{?><!--データベースのtypeのデータ型がintなので、valueの値を2に変更-->
+    <input type="radio" name="type" value="2">その他<br>
     <?php }?>
     <br>
     
     電話番号:
-    <input type="text" name="tell" value = "<?= $t_ell ?>">
+    <input type="text" name="tell" value = "<?= $t_ell ?>"><!--初期値として電話番号が入力されていた場合、デフォルト値として表示-->
     <br><br>
 
     自己紹介文
     <br>
     <textarea name="comment" rows=10 cols=50 style="resize:none" wrap="hard"><?= $c_omment ?></textarea><br><br>
-    
+    <!--初期値として自己紹介文が入力されていた場合、デフォルト値として表示-->
     <input type="submit" name="btnSubmit" value="確認画面へ">
     </form>
 </body>
