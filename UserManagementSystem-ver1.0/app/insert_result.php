@@ -16,6 +16,7 @@ if(empty($_POST["pass"])){ // passが送信されているか判定
 <body>
 
     <?php
+    sess_ck();
     session_start();
     $name = $_SESSION['name'];
     $birthday = $_SESSION['birthday'];
@@ -34,8 +35,8 @@ if(empty($_POST["pass"])){ // passが送信されているか判定
     自己紹介:<?php echo $comment;?><br>
     以上の内容で登録しました。<br>
 
-    <?php echo return_top(); ?>
-    
+    <?php echo return_top(); 
+     ?>
 </body>
 
 </html>

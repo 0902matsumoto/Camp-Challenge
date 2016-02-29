@@ -1,13 +1,15 @@
 <?php require_once '../common/defineUtil.php'; ?>
 <!--$n_ameから以下7つの変数は初期値を代入するためのもの。初期値があるならば、それを代入。ないならば、空を代入。-->
 <?php 
-$n_ame = !empty($_POST["n_ame"])?$_POST["n_ame"]:""; 
-$t_ell = !empty($_POST["t_ell"])?$_POST["t_ell"]:"";
-$c_omment = !empty($_POST["c_omment"])?$_POST["c_omment"]:"";
-$t_ype = !empty($_POST["t_ype"])?$_POST["t_ype"]:"";
-$y_ear = !empty($_POST["y_ear"])?$_POST["y_ear"]:"";
-$m_onth = !empty($_POST["m_onth"])?$_POST["m_onth"]:"";
-$d_ay = !empty($_POST["d_ay"])?$_POST["d_ay"]:"";
+session_start();
+$_SESSION["access_time"] = time(); // 現在時刻をセッションに格納
+$n_ame = !empty($_SESSION["n_ame"])?$_SESSION["n_ame"]:""; // セッションに値が格納されているか判定。ない場合は空を格納
+$t_ell = !empty($_SESSION["t_ell"])?$_SESSION["t_ell"]:"";
+$c_omment = !empty($_SESSION["c_omment"])?$_SESSION["c_omment"]:"";
+$t_ype = !empty($_SESSION["t_ype"])?$_SESSION["t_ype"]:"";
+$y_ear = !empty($_SESSION["y_ear"])?$_SESSION["y_ear"]:"";
+$m_onth = !empty($_SESSION["m_onth"])?$_SESSION["m_onth"]:"";
+$d_ay = !empty($_SESSION["d_ay"])?$_SESSION["d_ay"]:"";
 
 ?>
 <!DOCTYPE html>
@@ -106,5 +108,8 @@ $d_ay = !empty($_POST["d_ay"])?$_POST["d_ay"]:"";
     <!--初期値として自己紹介文が入力されていた場合、デフォルト値として表示-->
     <input type="submit" name="btnSubmit" value="確認画面へ">
     </form>
+    <?php
+   
+    ?>
 </body>
 </html>

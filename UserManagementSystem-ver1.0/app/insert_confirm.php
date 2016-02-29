@@ -1,4 +1,5 @@
 <?php require_once '../common/defineUtil.php'; ?>
+<?php require_once '../common/scriptUtil.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -8,11 +9,14 @@
 </head>
   <body>
     <?php
+    session_start();
+    sess_ck();
     // 設問2:&& $_POST['year']!=="----" && $_POST['month']!=="--" && $_POST['day']!=="--"を挿入
     // && !empty($_POST['year'])を削除
     if(!empty($_POST['name']) && !empty($_POST['type'])
             && !empty($_POST['tell']) && !empty($_POST['comment']) && $_POST['year']!=="----"
             && $_POST['month']!=="--" && $_POST['day']!=="--"
+            
             ){
         
         $post_name = $_POST['name'];
@@ -23,7 +27,6 @@
         $post_comment = $_POST['comment'];
 
         //セッション情報に格納
-        session_start();
         $_SESSION['name'] = $post_name;
         $_SESSION['birthday'] = $post_birthday;
         $_SESSION['type'] = $post_type;
@@ -46,20 +49,14 @@
           <input type="submit" name="yes" value="はい">
         </form>
         <form action="<?php echo INSERT ?>" method="POST"><?php // 初期値を表示するために送信
-           $n_ame = $_POST['name'];
-           $t_ype = $_POST['type'];
-           $t_ell = $_POST['tell'];
-           $c_omment = $_POST['comment'];
-           $y_ear = $_POST['year'];
-           $m_onth = $_POST['month'];
-           $d_ay = $_POST['day'];
-         ;?>  <input type ="hidden" name = "n_ame" value = "<?= $n_ame ?>">
-              <input type ="hidden" name = "t_ype" value = "<?= $t_ype ?>">
-              <input type ="hidden" name = "t_ell" value = "<?= $t_ell ?>">
-              <input type ="hidden" name = "c_omment" value = "<?= $c_omment ?>">
-              <input type ="hidden" name = "y_ear" value = "<?= $y_ear ?>">
-              <input type ="hidden" name = "m_onth" value = "<?= $m_onth ?>">
-              <input type ="hidden" name = "d_ay" value = "<?= $d_ay ?>">
+           $_SESSION["n_ame"] = $_POST['name']; // セッションに情報を格納
+           $_SESSION["t_ype"] = $_POST['type'];
+           $_SESSION["t_ell"] = $_POST['tell'];
+           $_SESSION["c_omment"] = $_POST['comment'];
+           $_SESSION["y_ear"] = $_POST['year'];
+           $_SESSION["m_onth"] = $_POST['month'];
+           $_SESSION["d_ay"] = $_POST['day'];
+         ?>  
             <input type="submit" name="no" value="登録画面に戻る">
         </form>
         
@@ -68,20 +65,16 @@
          <form action="<?php echo INSERT ?>" method="POST">
     <?php    // 入力項目が不完全だった場合以下の処理を実行。
           if(empty($_POST['name'])){print '名前が未入力です'."<br><br>";}else{ // 名前の入力がない場合、「名前が未入力です」と表示。
-              $n_ame = $_POST['name'];
-              ?><input type ="hidden" name = "n_ame" value = "<?= $n_ame ?>"><?php // 名前が入力済みの場合、初期値表示のため、hiddenで送信
+              $_SESSION["n_ame"] = $_POST['name']; // セッションに情報を格納
           }
             if(empty($_POST['type'])){print '種別が未入力です'."<br><br>";}else{ // 以下、自己紹介文まで、上記処理と同じ処理を実行
-                $t_ype = $_POST['type'];
-                ?><input type ="hidden" name = "t_ype" value = "<?= $t_ype ?>"><?php
+                $_SESSION["t_ype"] = $_POST['type'];
             }
               if(empty($_POST['tell'])){print '電話番号が未入力です'."<br><br>";}else{
-                  $t_ell = $_POST['tell'];
-                  ?><input type ="hidden" name = "t_ell" value = "<?= $t_ell ?>"><?php
+                  $_SESSION["t_ell"] = $_POST['tell'];
               }
                 if(empty($_POST['comment'])){print '自己紹介文が未入力です'."<br><br>";}else{
-                    $c_omment = $_POST['comment'];
-                    ?><input type ="hidden" name = "c_omment" value = "<?= $c_omment ?>"><?php
+                    $_SESSION["c_omment"] = $_POST['comment'];
                 }
                 // 年が----、月が--、日が--とどれかひとつでも代入されていた場合、「生年月日が未入力です」と表示。
                 // また、直接このページにログインした場合、エラー表示させないように、if文でyear、month、dayが空かどうか判定する。
@@ -89,17 +82,14 @@
                       if($_POST['year']=="----"||$_POST['month']=="--"||$_POST['day']=="--"){
                           print '生年月日が未入力です'."<br><br>";}}
                 if(!empty($_POST['year'])){
-                    $y_ear = $_POST['year'];
-                    ?><input type ="hidden" name = "y_ear" value = "<?= $y_ear ?>"><?php // 年が入力済みの場合、初期値表示のため、hiddenで送信
-                  } 
+                    $_SESSION["y_ear"] = $_POST['year'];
+                    } 
              if(!empty($_POST['month'])){
-                 $m_onth = $_POST['month'];
-                 ?><input type ="hidden" name = "m_onth" value = "<?= $m_onth ?>"><?php //月が入力済みの場合、初期値表示のため、hiddenで送信
-             } 
+                 $_SESSION["m_onth"] = $_POST['month'];
+                 } 
           if(!empty($_POST['day'])){
-              $d_ay = $_POST['day'];
-              ?><input type ="hidden" name = "d_ay" value = "<?= $d_ay ?>"><?php // 日が入力済みの場合、初期値表示のため、hiddenで送信
-         }        
+              $_SESSION["d_ay"] = $_POST['day'];
+              }        
     ?>
         <br><br>再度入力を行ってください
             <input type="submit" name="no" value="登録画面に戻る">
