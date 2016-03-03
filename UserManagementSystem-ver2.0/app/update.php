@@ -11,8 +11,10 @@ require_once '../common/dbaccesUtil.php';
 </head>
 <body>
     <form action="<?php echo UPDATE_RESULT ?>" method="POST">
-    <?php
+    <?php  
     $result = profile_detail($_GET['id']);
+    $birth = $result[0]['birthday'];
+    list($year, $month, $day) = sscanf($birth,"%d-%d-%d");
     ?>
     名前:
     <input type="text" name="name" value="<?php echo $result[0]['name']; ?>">
@@ -21,23 +23,23 @@ require_once '../common/dbaccesUtil.php';
     生年月日:　
     <select name="year">
         <option value="">----</option>
-        <?php
+        <?php                                           
         for($i=1950; $i<=2010; $i++){ ?>
-        <option value="<?php echo $i;?>" ><?php echo $i ;?></option>
+        <option value="<?php echo $i;?>"<?php if($i== $year){echo "selected";}?> ><?php echo $i ;?></option>
         <?php } ?>
     </select>年
     <select name="month">
         <option value="">--</option>
         <?php
         for($i = 1; $i<=12; $i++){?>
-        <option value="<?php echo $i;?>" ><?php echo $i;?></option>
-        <?php } ;?>
+        <option value="<?php echo $i;?>"<?php if($i== $month){echo "selected";}?> ><?php echo $i;?></option>
+        <?php } ?>
     </select>月
     <select name="day">
         <option value="">--</option>
         <?php
         for($i = 1; $i<=31; $i++){ ?>
-        <option value="<?php echo $i; ?>"><?php echo $i;?></option>
+        <option value="<?php echo $i; ?>"<?php if($i== $day){echo "selected";}?>><?php echo $i;?></option>
         <?php } ?>
     </select>日
     <br><br>
@@ -59,9 +61,11 @@ require_once '../common/dbaccesUtil.php';
     <textarea name="comment" rows=10 cols=50 style="resize:none" wrap="hard"><?php echo $result[0]['comment']; ?></textarea><br><br>
 
     <input type="hidden" name="mode"  value="RESULT">
+    <input type="hidden" name="userID" value="<?php echo $result[0]['userID']; ?>">
     <input type="submit" name="btnSubmit" value="以上の内容で更新を行う">
     </form>
-    <form action="<?php echo RESULT_DETAIL; ?>" method="POST">
+    <form action="<?php echo RESULT_DETAIL; ?>" method="GET">
+      <input type="hidden" name="id" value="<?php echo $result[0]['userID'];?>">
       <input type="submit" name="NO" value="詳細画面に戻る"style="width:100px">
     </form>
     <?php echo return_top(); ?>  

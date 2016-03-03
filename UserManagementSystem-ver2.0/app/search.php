@@ -12,7 +12,7 @@
         
         名前:
         <br>
-        <input type="text" name="name">
+        <input type="text" name="name"> 
         <br><br>
 
         生年:

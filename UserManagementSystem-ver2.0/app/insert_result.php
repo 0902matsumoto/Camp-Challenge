@@ -10,7 +10,7 @@
 </head>
     <body>
     <?php
-    if(!$_POST['mode']=="RESULT"){
+    if(empty($_POST['mode'])){
         echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
     }else{
         

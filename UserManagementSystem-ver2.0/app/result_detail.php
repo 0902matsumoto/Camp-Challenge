@@ -14,21 +14,24 @@ require_once '../common/dbaccesUtil.php';
     <?php
     $result = profile_detail($_GET['id']);
     //エラーが発生しなければ表示を行う
-    if(is_array($result)){
+    if(is_array($result)){//変数が配列ならばtrueを返す
     ?>
       
     <h1>詳細情報</h1>
-    名前:<?php echo $result[0]['name'];?><br>
+    ユーザーID:<?php echo $result[0]['userID'];?><br>
+    名前:<?php echo $result[0]['name'];?><br>  
     生年月日:<?php echo $result[0]['birthday'];?><br>
     種別:<?php echo ex_typenum($result[0]['type']);?><br>
     電話番号:<?php echo $result[0]['tell'];?><br>
     自己紹介:<?php echo $result[0]['comment'];?><br>
     登録日時:<?php echo date('Y年n月j日　G時i分s秒', strtotime($result[0]['newDate'])); ?><br>
     
-    <form action="<?php echo UPDATE; ?>" method="POST">
+    <form action="<?php echo UPDATE; ?>" method="GET">
+        <input type="hidden" name="id" value="<?php echo $result[0]['userID'];?>">
         <input type="submit" name="update" value="変更"style="width:100px">
     </form>
-    <form action="<?php echo DELETE; ?>" method="POST">
+    <form action="<?php echo DELETE; ?>" method="GET">
+        <input type="hidden" name="id" value="<?php echo $result[0]['userID'];?>">
         <input type="submit" name="delete" value="削除"style="width:100px">
     </form>
     

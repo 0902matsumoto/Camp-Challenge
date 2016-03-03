@@ -23,19 +23,24 @@ require_once '../common/dbaccesUtil.php';
         if(empty($_GET['name']) && empty($_GET['year']) && empty($_GET['type'])){
             $result = serch_all_profiles();
         }else{
+            if(!isset($_GET['type'])){$_GET['type']='';}
+            
             $result = serch_profiles($_GET['name'],$_GET['year'],$_GET['type']);
         }
         foreach($result as $value){
-        ?>
+        ?>                                      
             <tr>
                 <td><a href="<?php echo RESULT_DETAIL ?>?id=<?php echo $value['userID']?>"><?php echo $value['name']; ?></a></td>
                 <td><?php echo $value['birthday']; ?></td>
                 <td><?php echo ex_typenum($value['type']); ?></td>
-                <td><?php echo date('Y年n月j日　G時i分s秒', strtotime($value['newDate']));; ?></td>
-            </tr>
+                <td><?php echo date('Y年n月j日　G時i分s秒', strtotime($value['newDate'])); ?></td>
+            </tr>                                                    
         <?php
         }
         ?>
         </table>
+        <?php 
+        print "<br>";
+        echo return_top(); ?>
 </body>
 </html>
