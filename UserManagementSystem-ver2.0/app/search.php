@@ -8,6 +8,9 @@
       <title>ユーザー情報検索画面</title>
 </head>
   <body>
+      <?php
+      SESSION_START();
+      ?>
     <form action="<?php echo SEARCH_RESULT ?>" method="GET">
         
         名前:
@@ -33,7 +36,11 @@
         <input type="radio" name="type" value="<?php echo $i; ?>"><?php echo ex_typenum($i);?><br>
         <?php } ?>
         <br>
+        <input type="hidden" name ="pass" value ="pass">
         <input type="submit" name="btnSubmit" value="検索">
       </form>
+      <?PHP
+      $_SESSION['pass'] = 'pass';
+      ?>
   </body>
 </html>

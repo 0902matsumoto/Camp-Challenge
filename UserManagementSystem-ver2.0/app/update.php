@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../common/defineUtil.php';
 require_once '../common/scriptUtil.php';
 require_once '../common/dbaccesUtil.php';
@@ -10,9 +10,14 @@ require_once '../common/dbaccesUtil.php';
       <title>変更入力画面</title>
 </head>
 <body>
+    <?php 
+    if(empty($_POST['id'])){
+        echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
+    }else{
+    ?>    
     <form action="<?php echo UPDATE_RESULT ?>" method="POST">
     <?php  
-    $result = profile_detail($_GET['id']);
+    $result = profile_detail($_POST['id']);
     $birth = $result[0]['birthday'];
     list($year, $month, $day) = sscanf($birth,"%d-%d-%d");
     ?>
@@ -68,7 +73,11 @@ require_once '../common/dbaccesUtil.php';
       <input type="hidden" name="id" value="<?php echo $result[0]['userID'];?>">
       <input type="submit" name="NO" value="詳細画面に戻る"style="width:100px">
     </form>
-    <?php echo return_top(); ?>  
+    
+    <?php 
+    }
+    echo return_top(); 
+    ?>  
 </body>
 
 </html>

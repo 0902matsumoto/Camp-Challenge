@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../common/defineUtil.php';
 require_once '../common/scriptUtil.php';
 require_once '../common/dbaccesUtil.php';
@@ -10,8 +10,11 @@ require_once '../common/dbaccesUtil.php';
       <title>削除確認画面</title>
 </head>
   <body>
-    <?php
-    $result = profile_detail($_GET['id']);
+    <?php 
+    if(empty($_POST['id'])){
+        echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
+    }else{
+    $result = profile_detail($_POST['id']);
     //エラーが発生しなければ表示を行う
     if(is_array($result)){
     ?>
@@ -40,7 +43,8 @@ require_once '../common/dbaccesUtil.php';
     }else{
         echo 'データの取得に失敗しました。次記のエラーにより処理を中断します:'.$result;
     }
-   
+    }
+    echo return_top();
     ?>
    </body>
 </html>

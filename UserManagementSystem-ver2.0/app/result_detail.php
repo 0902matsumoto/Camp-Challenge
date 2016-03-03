@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../common/defineUtil.php';
 require_once '../common/scriptUtil.php';
 require_once '../common/dbaccesUtil.php';
@@ -11,7 +11,12 @@ require_once '../common/dbaccesUtil.php';
       <title>ユーザー情報詳細画面</title>
 </head>
   <body>
-    <?php
+    <?php 
+    SESSION_START();
+        if(empty($_SESSION['result'])){
+        echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
+    }else{
+        $_SESSION['result'] = ''; 
     $result = profile_detail($_GET['id']);
     //エラーが発生しなければ表示を行う
     if(is_array($result)){//変数が配列ならばtrueを返す
@@ -26,11 +31,11 @@ require_once '../common/dbaccesUtil.php';
     自己紹介:<?php echo $result[0]['comment'];?><br>
     登録日時:<?php echo date('Y年n月j日　G時i分s秒', strtotime($result[0]['newDate'])); ?><br>
     
-    <form action="<?php echo UPDATE; ?>" method="GET">
+    <form action="<?php echo UPDATE; ?>" method="POST">
         <input type="hidden" name="id" value="<?php echo $result[0]['userID'];?>">
         <input type="submit" name="update" value="変更"style="width:100px">
     </form>
-    <form action="<?php echo DELETE; ?>" method="GET">
+    <form action="<?php echo DELETE; ?>" method="POST">
         <input type="hidden" name="id" value="<?php echo $result[0]['userID'];?>">
         <input type="submit" name="delete" value="削除"style="width:100px">
     </form>
@@ -38,6 +43,7 @@ require_once '../common/dbaccesUtil.php';
     <?php
     }else{
         echo 'データの検索に失敗しました。次記のエラーにより処理を中断します:'.$result;
+    }
     }
     echo return_top(); 
     ?>

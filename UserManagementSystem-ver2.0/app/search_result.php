@@ -10,7 +10,14 @@ require_once '../common/dbaccesUtil.php';
       <title>検索結果画面</title>
 </head>
     <body>
-        <h1>検索結果</h1>
+        <?php
+        SESSION_START();
+        if(empty($_SESSION['pass'])&&empty($_GET['pass'])){
+        echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
+    }else{
+        $_SESSION['pass'] = '';
+        $_SESSION['result'] = 'result';
+        ?><h1>検索結果</h1>
         <table border=1>
             <tr>
                 <th>名前</th>
@@ -41,6 +48,7 @@ require_once '../common/dbaccesUtil.php';
         </table>
         <?php 
         print "<br>";
+    }
         echo return_top(); ?>
 </body>
 </html>
