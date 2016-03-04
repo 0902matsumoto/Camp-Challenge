@@ -11,8 +11,11 @@
     <body>
     <?php
     if(empty($_POST['mode'])){
-        echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
-    }else{
+        access_ck();         
+    }
+    if($_POST['mode']!='RESULT'){
+        access_ck();
+    }
         
         session_start();
         $name = $_SESSION['name'];
@@ -39,7 +42,7 @@
         }else{
             echo 'データの挿入に失敗しました。次記のエラーにより処理を中断します:'.$result;
         }
-    }
+    
     echo return_top(); 
     ?>
     </body>

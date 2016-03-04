@@ -53,3 +53,9 @@ function bind_p2s($name){
         return null;
     }
 }
+
+function access_ck(){
+    echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
+            echo return_top(); 
+            die();   
+}

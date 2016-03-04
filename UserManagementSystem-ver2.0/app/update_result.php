@@ -12,8 +12,11 @@ require_once '../common/dbaccesUtil.php';
   <body>
     <?php
     if(empty($_POST['mode'])){
-        echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
-    }else{?>
+        access_ck();         
+    }
+    if($_POST['mode']!='RESULT'){
+        access_ck();
+    }?>
            
             <?php
             $userID = $_POST['userID'];
@@ -48,7 +51,6 @@ require_once '../common/dbaccesUtil.php';
     }
     }else{
         echo 'データの更新に失敗しました。次記のエラーにより処理を中断します:'.$result;
-    }
     }
     echo return_top(); 
     ?>

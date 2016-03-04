@@ -11,9 +11,12 @@ require_once '../common/dbaccesUtil.php';
 </head>
   <body>
     <?php 
-    if(empty($_POST['id'])){
-        echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
-    }else{
+    if(empty($_POST['aaaa'])){
+        access_ck();         
+    }
+    if($_POST['aaaa']!='7777'){
+        access_ck();
+    }
     $result = profile_detail($_POST['id']);
     //エラーが発生しなければ表示を行う
     if(is_array($result)){
@@ -29,6 +32,7 @@ require_once '../common/dbaccesUtil.php';
     
     <form action="<?php echo DELETE_RESULT; ?>" method="POST">
       <input type="hidden" name="id" value="<?php echo $result[0]['userID'];?>">  
+      <input type="hidden" name="delete" value="result"> 
       <input type="submit" name="YES" value="はい"style="width:100px">
     </form><br>
     <form action="<?php echo ROOT_URL; ?>">
@@ -42,7 +46,6 @@ require_once '../common/dbaccesUtil.php';
     <?php
     }else{
         echo 'データの取得に失敗しました。次記のエラーにより処理を中断します:'.$result;
-    }
     }
     echo return_top();
     ?>

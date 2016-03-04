@@ -12,11 +12,14 @@ require_once '../common/dbaccesUtil.php';
     <body>
         <?php
         SESSION_START();
-        if(empty($_SESSION['pass'])&&empty($_GET['pass'])){
-        echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
-    }else{
+        if(empty($_SESSION['pass'])){
+        access_ck();         
+    }
+    if($_SESSION['pass']!='0000'){
+        access_ck();
+    }
         $_SESSION['pass'] = '';
-        $_SESSION['result'] = 'result';
+        $_SESSION['result'] = '1111';
         ?><h1>検索結果</h1>
         <table border=1>
             <tr>
@@ -48,7 +51,6 @@ require_once '../common/dbaccesUtil.php';
         </table>
         <?php 
         print "<br>";
-    }
         echo return_top(); ?>
 </body>
 </html>

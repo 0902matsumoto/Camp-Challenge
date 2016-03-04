@@ -11,9 +11,12 @@ require_once '../common/dbaccesUtil.php';
 </head>
 <body>
     <?php
-    if(empty($_POST['id'])){
-        echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
-    }else{
+    if(empty($_POST['delete'])){
+        access_ck();         
+    }
+    if($_POST['delete']!='result'){
+        access_ck();
+    }
     $result = delete_profile($_POST['id']);
     //エラーが発生しなければ表示を行う
     if(!isset($result)){
@@ -23,7 +26,6 @@ require_once '../common/dbaccesUtil.php';
     <?php
     }else{
         echo 'データの削除に失敗しました。次記のエラーにより処理を中断します:'.$result;
-    }
     }
     echo return_top(); 
     ?>

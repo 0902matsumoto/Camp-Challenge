@@ -11,9 +11,11 @@
     <?php
     //入力画面から「確認画面へ」ボタンを押した場合のみ処理を行う
     if(empty($_POST['mode'])){
-        echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
-    }else{
-        
+        access_ck();         
+    }
+    if($_POST['mode']!='CONFIRM'){
+        access_ck();
+    }
         session_start();
         
         //ポストの存在チェックとセッションに値を格納しつつ、連想配列にポストされた値を格納
@@ -83,7 +85,6 @@
             <input type="submit" name="no" value="登録画面に戻る">
         </form>
         <?php
-    }
     echo return_top(); 
     ?>
 </body>

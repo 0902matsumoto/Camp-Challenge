@@ -11,9 +11,12 @@ require_once '../common/dbaccesUtil.php';
 </head>
 <body>
     <?php 
-    if(empty($_POST['id'])){
-        echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
-    }else{
+    if(empty($_POST['papapaa'])){
+        access_ck();         
+    }
+    if($_POST['papapaa']!='2222'){
+        access_ck();
+    }
     ?>    
     <form action="<?php echo UPDATE_RESULT ?>" method="POST">
     <?php  
@@ -75,7 +78,6 @@ require_once '../common/dbaccesUtil.php';
     </form>
     
     <?php 
-    }
     echo return_top(); 
     ?>  
 </body>
